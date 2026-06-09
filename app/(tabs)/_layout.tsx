@@ -11,17 +11,17 @@ function TabIcon({ focused, icon, label }: { focused: boolean, icon: string, lab
         justifyContent: 'center',
         paddingVertical: 8,
         paddingHorizontal: 16,
-        borderRadius: 24,
-        backgroundColor: focused ? '#3B82F6' : 'transparent',
+        borderRadius: 12,
+        backgroundColor: focused ? '#E2E8F0' : 'transparent',
         minWidth: 60,
       }}
     >
-      <Ionicons name={icon as any} size={20} color={focused ? '#FFF' : '#64748B'} />
+      <Ionicons name={icon as any} size={20} color={focused ? '#1E293B' : '#64748B'} />
       <Text
         style={{
           fontSize: 11,
           fontWeight: focused ? 'bold' : '600',
-          color: focused ? '#FFF' : '#64748B',
+          color: focused ? '#1E293B' : '#64748B',
           marginTop: 2,
         }}
       >
@@ -38,9 +38,9 @@ export default function TabLayout() {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          height: Platform.OS === 'ios' ? 88 : 70,
+          height: Platform.OS === 'ios' ? 92 : 80,
           paddingTop: 8,
-          paddingBottom: Platform.OS === 'ios' ? 24 : 8,
+          paddingBottom: Platform.OS === 'ios' ? 32 : 16,
           backgroundColor: '#FFF',
           borderTopWidth: 1,
           borderTopColor: '#F1F5F9',
