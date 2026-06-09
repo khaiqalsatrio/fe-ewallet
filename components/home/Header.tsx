@@ -10,7 +10,7 @@ export function Header() {
         <Text style={styles.title}>SecureWallet</Text>
       </View>
       <View style={styles.right}>
-        <Ionicons name="notifications-outline" size={24} color="#1A2235" />
+        <Ionicons name="notifications-outline" size={24} color="#000000" />
         <View style={styles.avatar}>
           <Text style={styles.avatarText}>JS</Text>
         </View>
@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
     zIndex: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#E2E8F0',
-    // Optional shadow for Android/iOS
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#0A50E4',
+    color: '#000000',
   },
   right: {
     flexDirection: 'row',

@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const actions = [
-  { id: 'transfer', title: 'Transfer', icon: 'send', color: '#1A2235', iconColor: '#FFF' },
-  { id: 'topup', title: 'Top-Up', icon: 'wallet-outline', color: '#3B82F6', iconColor: '#FFF' },
-  { id: 'withdraw', title: 'Withdraw', icon: 'cash-outline', color: '#E2E8F0', iconColor: '#1A2235' },
-  { id: 'history', title: 'History', icon: 'time-outline', color: '#D1FAE5', iconColor: '#059669' },
+  { id: 'transfer', title: 'SEND', icon: 'send-outline' },
+  { id: 'topup', title: 'TOP-UP', icon: 'wallet-plus-outline' },
+  { id: 'withdraw', title: 'WITHDRAW', icon: 'cash' },
+  { id: 'history', title: 'STATS', icon: 'history' },
 ];
 
 export function ActionButtons() {
@@ -14,8 +14,8 @@ export function ActionButtons() {
     <View style={styles.container}>
       {actions.map((action) => (
         <View key={action.id} style={styles.actionItem}>
-          <TouchableOpacity style={[styles.iconContainer, { backgroundColor: action.color }]}>
-            <Ionicons name={action.icon as any} size={24} color={action.iconColor} />
+          <TouchableOpacity style={styles.iconContainer}>
+            <MaterialCommunityIcons name={action.icon as any} size={28} color="#000000" />
           </TouchableOpacity>
           <Text style={styles.title}>{action.title}</Text>
         </View>
@@ -33,18 +33,27 @@ const styles = StyleSheet.create({
   },
   actionItem: {
     alignItems: 'center',
-    gap: 8,
+    gap: 12,
   },
   iconContainer: {
-    width: 64,
-    height: 64,
-    borderRadius: 20,
+    width: 68,
+    height: 68,
+    borderRadius: 22,
+    backgroundColor: '#F8FAFC',
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#F1F5F9',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    elevation: 2,
   },
   title: {
-    fontSize: 13,
+    fontSize: 10,
     color: '#475569',
-    fontWeight: '500',
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
   },
 });

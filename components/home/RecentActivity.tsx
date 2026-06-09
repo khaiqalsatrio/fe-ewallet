@@ -6,9 +6,9 @@ const activities = [
   {
     id: '1',
     title: 'Apple Store',
-    subtitle: 'Subscription',
+    subtitle: 'Software & Services',
     amount: '-$9.99',
-    time: '2h ago',
+    time: '2H AGO',
     icon: 'bag-handle-outline',
     color: '#FEE2E2',
     iconColor: '#DC2626',
@@ -17,9 +17,9 @@ const activities = [
   {
     id: '2',
     title: 'David Wilson',
-    subtitle: 'Transfer received',
+    subtitle: 'Payment received',
     amount: '+$450.00',
-    time: 'Yesterday',
+    time: 'YESTERDAY',
     icon: 'wallet-outline',
     color: '#D1FAE5',
     iconColor: '#059669',
@@ -27,10 +27,10 @@ const activities = [
   },
   {
     id: '3',
-    title: 'Shell Fuel',
-    subtitle: 'Transport',
+    title: 'Shell Station',
+    subtitle: 'Travel & Transport',
     amount: '-$45.20',
-    time: 'Mar 12',
+    time: 'MAR 12',
     icon: 'car-outline',
     color: '#E0E7FF',
     iconColor: '#4F46E5',
@@ -43,7 +43,9 @@ export function RecentActivity() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Recent Activity</Text>
-        <Ionicons name="filter" size={20} color="#1A2235" />
+        <View style={styles.filterBtn}>
+          <Ionicons name="options-outline" size={20} color="#1A2235" />
+        </View>
       </View>
       <View style={styles.list}>
         {activities.map((item) => (
@@ -85,16 +87,26 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#1A2235',
   },
+  filterBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 8,
+    backgroundColor: '#F1F5F9',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   list: {
-    gap: 12,
+    gap: 16,
   },
   item: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: '#FFFFFF',
     padding: 16,
     borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#F1F5F9',
   },
   itemLeft: {
     flexDirection: 'row',
@@ -102,32 +114,34 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   iconContainer: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 48,
+    height: 48,
+    borderRadius: 16,
     justifyContent: 'center',
     alignItems: 'center',
   },
   itemTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 15,
+    fontWeight: '600',
     color: '#1A2235',
     marginBottom: 4,
   },
   itemSubtitle: {
-    fontSize: 13,
+    fontSize: 12,
     color: '#64748B',
   },
   itemRight: {
     alignItems: 'flex-end',
   },
   amount: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 'bold',
     marginBottom: 4,
   },
   time: {
-    fontSize: 12,
-    color: '#64748B',
+    fontSize: 10,
+    color: '#9CA3AF',
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
   },
 });

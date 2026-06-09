@@ -5,15 +5,15 @@ export function SpecialOffers() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Special Offers</Text>
+        <Text style={styles.title}>Exclusive Offers</Text>
         <TouchableOpacity>
           <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-        <View style={[styles.card, { backgroundColor: '#1A2235' }]}>
-          <Text style={styles.cardSubtitle}>Cashback</Text>
-          <Text style={styles.cardTitle}>5% Off Coffee</Text>
+        <View style={[styles.card, { backgroundColor: '#0B132B' }]}>
+          <Text style={styles.cardSubtitle}>CASHBACK</Text>
+          <Text style={styles.cardTitle}>5% Off Daily Coffee</Text>
         </View>
         <View style={[styles.card, { backgroundColor: '#3B82F6' }]}>
           <Text style={styles.cardSubtitle}>Investment</Text>
