@@ -1,15 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function AssetsScreen() {
+  const { theme } = useTheme();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       {/* Header */}
-      <View style={styles.header}>
-        <Ionicons name="wallet-outline" size={24} color="#000" />
-        <Text style={styles.headerTitle}>Assets</Text>
-        <Ionicons name="notifications-outline" size={24} color="#000" />
+      <View style={[styles.header, { backgroundColor: theme.background }]}>
+        <Ionicons name="wallet-outline" size={24} color={theme.headerIcon} />
+        <Text style={[styles.headerTitle, { color: theme.headerIcon }]}>Assets</Text>
+        <Ionicons name="notifications-outline" size={24} color={theme.headerIcon} />
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
@@ -25,55 +27,55 @@ export default function AssetsScreen() {
         </View>
 
         {/* Your Assets */}
-        <Text style={styles.sectionTitle}>Your Assets</Text>
+        <Text style={[styles.sectionTitle, { color: theme.text }]}>Your Assets</Text>
         <View style={styles.assetsList}>
           {/* Item 1 */}
-          <View style={styles.assetItem}>
+          <View style={[styles.assetItem, { backgroundColor: theme.card, borderColor: theme.divider }]}>
             <View style={styles.assetItemLeft}>
               <View style={[styles.iconContainer, { backgroundColor: '#E0E7FF' }]}>
                 <MaterialCommunityIcons name="bank" size={24} color="#4F46E5" />
               </View>
               <View>
-                <Text style={styles.assetTitle}>Cash & Savings</Text>
-                <Text style={styles.assetSubtitle}>3 Accounts</Text>
+                <Text style={[styles.assetTitle, { color: theme.text }]}>Cash & Savings</Text>
+                <Text style={[styles.assetSubtitle, { color: theme.textMuted }]}>3 Accounts</Text>
               </View>
             </View>
             <View style={styles.assetItemRight}>
-              <Text style={styles.assetAmount}>$45,200.00</Text>
-              <Text style={styles.assetPercent}>31.6%</Text>
+              <Text style={[styles.assetAmount, { color: theme.text }]}>$45,200.00</Text>
+              <Text style={[styles.assetPercent, { color: theme.textMuted }]}>31.6%</Text>
             </View>
           </View>
 
           {/* Item 2 */}
-          <View style={styles.assetItem}>
+          <View style={[styles.assetItem, { backgroundColor: theme.card, borderColor: theme.divider }]}>
             <View style={styles.assetItemLeft}>
               <View style={[styles.iconContainer, { backgroundColor: '#D1FAE5' }]}>
                 <Feather name="trending-up" size={24} color="#059669" />
               </View>
               <View>
-                <Text style={styles.assetTitle}>Investments</Text>
-                <Text style={styles.assetSubtitle}>Stocks & ETFs</Text>
+                <Text style={[styles.assetTitle, { color: theme.text }]}>Investments</Text>
+                <Text style={[styles.assetSubtitle, { color: theme.textMuted }]}>Stocks & ETFs</Text>
               </View>
             </View>
             <View style={styles.assetItemRight}>
-              <Text style={styles.assetAmount}>$82,450.00</Text>
+              <Text style={[styles.assetAmount, { color: theme.text }]}>$82,450.00</Text>
               <Text style={[styles.assetPercent, { color: '#059669' }]}>▲ 1.2%</Text>
             </View>
           </View>
 
           {/* Item 3 */}
-          <View style={styles.assetItem}>
+          <View style={[styles.assetItem, { backgroundColor: theme.card, borderColor: theme.divider }]}>
             <View style={styles.assetItemLeft}>
-              <View style={[styles.iconContainer, { backgroundColor: '#F3F4F6' }]}>
-                <MaterialCommunityIcons name="bitcoin" size={24} color="#6B7280" />
+              <View style={[styles.iconContainer, { backgroundColor: theme.iconBg }]}>
+                <MaterialCommunityIcons name="bitcoin" size={24} color={theme.iconColor} />
               </View>
               <View>
-                <Text style={styles.assetTitle}>Crypto</Text>
-                <Text style={styles.assetSubtitle}>BTC, ETH</Text>
+                <Text style={[styles.assetTitle, { color: theme.text }]}>Crypto</Text>
+                <Text style={[styles.assetSubtitle, { color: theme.textMuted }]}>BTC, ETH</Text>
               </View>
             </View>
             <View style={styles.assetItemRight}>
-              <Text style={styles.assetAmount}>$15,200.00</Text>
+              <Text style={[styles.assetAmount, { color: theme.text }]}>$15,200.00</Text>
               <Text style={[styles.assetPercent, { color: '#DC2626' }]}>▼ 0.8%</Text>
             </View>
           </View>
@@ -81,24 +83,24 @@ export default function AssetsScreen() {
 
         {/* Recent Asset Moves */}
         <View style={styles.sectionHeader}>
-          <Text style={[styles.sectionTitle, { marginBottom: 0 }]}>Recent Asset Moves</Text>
+          <Text style={[styles.sectionTitle, { marginBottom: 0, color: theme.text }]}>Recent Asset Moves</Text>
           <TouchableOpacity>
             <Text style={styles.seeAll}>View All</Text>
           </TouchableOpacity>
         </View>
         
-        <View style={styles.assetItem}>
+        <View style={[styles.assetItem, { backgroundColor: theme.card, borderColor: theme.divider }]}>
           <View style={styles.assetItemLeft}>
-            <View style={[styles.iconContainer, { backgroundColor: '#F3F4F6', width: 40, height: 40, borderRadius: 20 }]}>
-              <Ionicons name="swap-horizontal" size={20} color="#4B5563" />
+            <View style={[styles.iconContainer, { backgroundColor: theme.iconBg, width: 40, height: 40, borderRadius: 20 }]}>
+              <Ionicons name="swap-horizontal" size={20} color={theme.iconColor} />
             </View>
             <View>
-              <Text style={styles.assetTitle}>Bought AAPL</Text>
-              <Text style={styles.assetSubtitle}>Investments • Today</Text>
+              <Text style={[styles.assetTitle, { color: theme.text }]}>Bought AAPL</Text>
+              <Text style={[styles.assetSubtitle, { color: theme.textMuted }]}>Investments • Today</Text>
             </View>
           </View>
           <View style={styles.assetItemRight}>
-            <Text style={styles.assetAmount}>-$1,250.00</Text>
+            <Text style={[styles.assetAmount, { color: theme.text }]}>-$1,250.00</Text>
           </View>
         </View>
 
@@ -110,7 +112,6 @@ export default function AssetsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8FAFC',
   },
   header: {
     flexDirection: 'row',
@@ -119,12 +120,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 60,
     paddingBottom: 20,
-    backgroundColor: '#F8FAFC',
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#000',
   },
   scrollContent: {
     paddingHorizontal: 20,
@@ -166,7 +165,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#0F172A',
     marginBottom: 16,
   },
   sectionHeader: {
@@ -188,11 +186,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#FFF',
     padding: 16,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#F1F5F9',
   },
   assetItemLeft: {
     flexDirection: 'row',
@@ -209,12 +205,10 @@ const styles = StyleSheet.create({
   assetTitle: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#0F172A',
     marginBottom: 4,
   },
   assetSubtitle: {
     fontSize: 13,
-    color: '#64748B',
   },
   assetItemRight: {
     alignItems: 'flex-end',
@@ -222,12 +216,10 @@ const styles = StyleSheet.create({
   assetAmount: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#0F172A',
     marginBottom: 4,
   },
   assetPercent: {
     fontSize: 12,
-    color: '#64748B',
     fontWeight: '500',
   },
 });

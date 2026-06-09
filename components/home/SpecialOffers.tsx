@@ -1,11 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { useTheme } from '../../context/ThemeContext';
 
 export function SpecialOffers() {
+  const { theme } = useTheme();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Exclusive Offers</Text>
+        <Text style={[styles.title, { color: theme.text }]}>Exclusive Offers</Text>
         <TouchableOpacity>
           <Text style={styles.seeAll}>See All</Text>
         </TouchableOpacity>
@@ -38,7 +41,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1A2235',
   },
   seeAll: {
     fontSize: 14,

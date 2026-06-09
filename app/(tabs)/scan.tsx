@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Alert, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import { useTheme } from '../../context/ThemeContext';
 
 const { width } = Dimensions.get('window');
 const frameSize = 250;
@@ -12,25 +13,27 @@ export default function ScanScreen() {
   const [scanned, setScanned] = useState(false);
   const [flash, setFlash] = useState<boolean>(false);
 
+  const { theme } = useTheme();
+
   if (!permission) {
     return <View style={styles.container} />;
   }
 
   if (!permission.granted) {
     return (
-      <View style={styles.permissionContainer}>
+      <View style={[styles.permissionContainer, { backgroundColor: theme.background }]}>
         <View style={styles.iconCircle}>
           <Ionicons name="camera-outline" size={48} color="#0A50E4" />
         </View>
-        <Text style={styles.permissionTitle}>Camera Access</Text>
-        <Text style={styles.permissionText}>
+        <Text style={[styles.permissionTitle, { color: theme.text }]}>Camera Access</Text>
+        <Text style={[styles.permissionText, { color: theme.textMuted }]}>
           We need access to your camera to scan QR codes for payments and transfers.
         </Text>
         <TouchableOpacity style={styles.permissionBtn} onPress={requestPermission}>
           <Text style={styles.permissionBtnText}>Enable Camera</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.cancelBtn} onPress={() => router.back()}>
-          <Text style={styles.cancelBtnText}>Cancel</Text>
+          <Text style={[styles.cancelBtnText, { color: theme.textMuted }]}>Cancel</Text>
         </TouchableOpacity>
       </View>
     );

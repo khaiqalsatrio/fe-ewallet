@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from '../../context/ThemeContext';
 
 const activities = [
   {
@@ -39,29 +40,31 @@ const activities = [
 ];
 
 export function RecentActivity() {
+  const { theme } = useTheme();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Recent Activity</Text>
-        <View style={styles.filterBtn}>
-          <Ionicons name="options-outline" size={20} color="#1A2235" />
+        <Text style={[styles.title, { color: theme.text }]}>Recent Activity</Text>
+        <View style={[styles.filterBtn, { backgroundColor: theme.card }]}>
+          <Ionicons name="options-outline" size={20} color={theme.iconColor} />
         </View>
       </View>
       <View style={styles.list}>
         {activities.map((item) => (
-          <View key={item.id} style={styles.item}>
+          <View key={item.id} style={[styles.item, { backgroundColor: theme.card, borderColor: theme.divider }]}>
             <View style={styles.itemLeft}>
               <View style={[styles.iconContainer, { backgroundColor: item.color }]}>
                 <Ionicons name={item.icon as any} size={24} color={item.iconColor} />
               </View>
               <View>
-                <Text style={styles.itemTitle}>{item.title}</Text>
-                <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
+                <Text style={[styles.itemTitle, { color: theme.text }]}>{item.title}</Text>
+                <Text style={[styles.itemSubtitle, { color: theme.textMuted }]}>{item.subtitle}</Text>
               </View>
             </View>
             <View style={styles.itemRight}>
-              <Text style={[styles.amount, { color: item.amountColor }]}>{item.amount}</Text>
-              <Text style={styles.time}>{item.time}</Text>
+              <Text style={[styles.amount, { color: item.amount.startsWith('-') ? theme.text : item.amountColor }]}>{item.amount}</Text>
+              <Text style={[styles.time, { color: theme.textMuted }]}>{item.time}</Text>
             </View>
           </View>
         ))}
@@ -85,13 +88,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1A2235',
   },
   filterBtn: {
     width: 36,
     height: 36,
     borderRadius: 8,
-    backgroundColor: '#F1F5F9',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -102,11 +103,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#FFFFFF',
     padding: 16,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#F1F5F9',
   },
   itemLeft: {
     flexDirection: 'row',
@@ -123,12 +122,10 @@ const styles = StyleSheet.create({
   itemTitle: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#1A2235',
     marginBottom: 4,
   },
   itemSubtitle: {
     fontSize: 12,
-    color: '#64748B',
   },
   itemRight: {
     alignItems: 'flex-end',

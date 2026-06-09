@@ -2,16 +2,19 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { View, Text, Platform } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTheme } from '../../context/ThemeContext';
 
 function TabIcon({ focused, icon, label, IconComponent = Feather }: { focused: boolean, icon: string, label: string, IconComponent?: any }) {
+  const { theme } = useTheme();
+  const color = focused ? theme.navActive : theme.navInactive;
   return (
     <View style={{ alignItems: 'center', justifyContent: 'center', width: 60 }}>
-      <IconComponent name={icon} size={24} color={focused ? '#000000' : '#9CA3AF'} />
+      <IconComponent name={icon} size={24} color={color} />
       <Text
         style={{
           fontSize: 10,
           fontWeight: 'bold',
-          color: focused ? '#000000' : '#9CA3AF',
+          color: color,
           marginTop: 4,
           letterSpacing: 0.5,
         }}
@@ -23,6 +26,7 @@ function TabIcon({ focused, icon, label, IconComponent = Feather }: { focused: b
 }
 
 function ScanTabIcon() {
+  const { theme } = useTheme();
   return (
     <View style={{ alignItems: 'center', justifyContent: 'flex-start', width: 60, height: 70 }}>
       <View
@@ -30,7 +34,7 @@ function ScanTabIcon() {
           width: 56,
           height: 56,
           borderRadius: 28,
-          backgroundColor: '#000000',
+          backgroundColor: theme.navActive,
           alignItems: 'center',
           justifyContent: 'center',
           marginTop: -20, // Float above the tab bar
@@ -41,13 +45,13 @@ function ScanTabIcon() {
           elevation: 5,
         }}
       >
-        <MaterialCommunityIcons name="qrcode-scan" size={24} color="#FFFFFF" />
+        <MaterialCommunityIcons name="qrcode-scan" size={24} color={theme.navBg} />
       </View>
       <Text
         style={{
           fontSize: 10,
           fontWeight: 'bold',
-          color: '#9CA3AF',
+          color: theme.navInactive,
           marginTop: 6,
           letterSpacing: 0.5,
         }}
@@ -59,6 +63,8 @@ function ScanTabIcon() {
 }
 
 export default function TabLayout() {
+  const { theme } = useTheme();
+
   return (
     <Tabs
       screenOptions={{
@@ -68,9 +74,9 @@ export default function TabLayout() {
           height: Platform.OS === 'ios' ? 92 : 80,
           paddingTop: 8,
           paddingBottom: Platform.OS === 'ios' ? 32 : 16,
-          backgroundColor: '#FFF',
+          backgroundColor: theme.navBg,
           borderTopWidth: 1,
-          borderTopColor: '#F1F5F9',
+          borderTopColor: theme.navBorder,
           elevation: 0,
         },
       }}>

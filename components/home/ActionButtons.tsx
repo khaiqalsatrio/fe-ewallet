@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTheme } from '../../context/ThemeContext';
 
 const actions = [
   { id: 'transfer', title: 'SEND', icon: 'send-outline' },
@@ -10,14 +11,16 @@ const actions = [
 ];
 
 export function ActionButtons() {
+  const { theme } = useTheme();
+
   return (
     <View style={styles.container}>
       {actions.map((action) => (
         <View key={action.id} style={styles.actionItem}>
-          <TouchableOpacity style={styles.iconContainer}>
-            <MaterialCommunityIcons name={action.icon as any} size={28} color="#000000" />
+          <TouchableOpacity style={[styles.iconContainer, { backgroundColor: theme.card, borderColor: theme.divider }]}>
+            <MaterialCommunityIcons name={action.icon as any} size={28} color={theme.iconColor} />
           </TouchableOpacity>
-          <Text style={styles.title}>{action.title}</Text>
+          <Text style={[styles.title, { color: theme.textMuted }]}>{action.title}</Text>
         </View>
       ))}
     </View>

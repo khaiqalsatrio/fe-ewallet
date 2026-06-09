@@ -5,10 +5,12 @@ import { BalanceCard } from '@/components/home/BalanceCard';
 import { ActionButtons } from '@/components/home/ActionButtons';
 import { SpecialOffers } from '@/components/home/SpecialOffers';
 import { RecentActivity } from '@/components/home/RecentActivity';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function HomeScreen() {
+  const { theme } = useTheme();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       <Header />
       <ScrollView showsVerticalScrollIndicator={false}>
         <BalanceCard />
@@ -23,6 +25,5 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8FAFC',
   },
 });

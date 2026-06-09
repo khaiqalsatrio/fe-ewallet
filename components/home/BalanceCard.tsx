@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTheme } from '../../context/ThemeContext';
 
 export function BalanceCard() {
+  const { theme, isDarkMode } = useTheme();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: isDarkMode ? theme.card : '#0F172A', borderColor: theme.divider, borderWidth: isDarkMode ? 1 : 0 }]}>
       <View style={styles.topRow}>
         <View>
           <Text style={styles.label}>TOTAL BALANCE</Text>

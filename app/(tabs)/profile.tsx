@@ -1,17 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Switch } from 'react-native';
 import { Ionicons, Feather, MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function ProfileScreen() {
+  const { isDarkMode, setIsDarkMode, theme } = useTheme();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       {/* Header */}
-      <View style={styles.header}>
-        <Ionicons name="wallet-outline" size={24} color="#000" />
-        <Text style={styles.headerTitle}>SecureVault</Text>
+      <View style={[styles.header, { backgroundColor: theme.background }]}>
+        <Ionicons name="wallet-outline" size={24} color={theme.headerIcon} />
+        <Text style={[styles.headerTitle, { color: theme.headerIcon }]}>SecureVault</Text>
         <View style={styles.bellContainer}>
-          <Ionicons name="notifications-outline" size={24} color="#000" />
-          <View style={styles.notificationBadge} />
+          <Ionicons name="notifications-outline" size={24} color={theme.headerIcon} />
+          <View style={[styles.notificationBadge, { borderColor: theme.background }]} />
         </View>
       </View>
 
@@ -23,65 +26,84 @@ export default function ProfileScreen() {
               source={{ uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80' }}
               style={styles.avatar}
             />
-            <TouchableOpacity style={styles.editBtn}>
+            <TouchableOpacity style={[styles.editBtn, { borderColor: theme.background }]}>
               <Ionicons name="pencil" size={12} color="#FFF" />
             </TouchableOpacity>
           </View>
           
-          <Text style={styles.name}>Julianne Thorne</Text>
+          <Text style={[styles.name, { color: theme.text }]}>Julianne Thorne</Text>
           
-          <View style={styles.badgePill}>
-            <MaterialIcons name="verified" size={14} color="#2563EB" />
-            <Text style={styles.badgeText}>Account Level: Gold</Text>
+          <View style={[styles.badgePill, { backgroundColor: theme.badgeBg, borderColor: theme.badgeBorder }]}>
+            <MaterialIcons name="verified" size={14} color="#3B82F6" />
+            <Text style={[styles.badgeText, { color: theme.text }]}>Account Level: Gold</Text>
           </View>
         </View>
 
         {/* Menu List */}
-        <View style={styles.menuCard}>
+        <View style={[styles.menuCard, { backgroundColor: theme.card }]}>
+          
+          {/* Dark Mode Toggle */}
+          <View style={styles.menuItem}>
+            <View style={styles.menuItemLeft}>
+              <View style={[styles.menuIconCircle, { backgroundColor: theme.iconBg }]}>
+                <Ionicons name={isDarkMode ? "moon" : "moon-outline"} size={20} color={theme.iconColor} />
+              </View>
+              <Text style={[styles.menuItemText, { color: theme.text }]}>Dark Mode</Text>
+            </View>
+            <Switch
+              value={isDarkMode}
+              onValueChange={setIsDarkMode}
+              trackColor={{ false: '#E2E8F0', true: '#3B82F6' }}
+              thumbColor="#FFF"
+            />
+          </View>
+
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
+
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
-              <View style={styles.menuIconCircle}>
-                <Ionicons name="person-outline" size={20} color="#4B5563" />
+              <View style={[styles.menuIconCircle, { backgroundColor: theme.iconBg }]}>
+                <Ionicons name="person-outline" size={20} color={theme.iconColor} />
               </View>
-              <Text style={styles.menuItemText}>Personal Information</Text>
+              <Text style={[styles.menuItemText, { color: theme.text }]}>Personal Information</Text>
             </View>
-            <Feather name="chevron-right" size={20} color="#9CA3AF" />
+            <Feather name="chevron-right" size={20} color={theme.textMuted} />
           </TouchableOpacity>
           
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
-              <View style={styles.menuIconCircle}>
-                <Ionicons name="lock-closed-outline" size={20} color="#4B5563" />
+              <View style={[styles.menuIconCircle, { backgroundColor: theme.iconBg }]}>
+                <Ionicons name="lock-closed-outline" size={20} color={theme.iconColor} />
               </View>
-              <Text style={styles.menuItemText}>Security & PIN</Text>
+              <Text style={[styles.menuItemText, { color: theme.text }]}>Security & PIN</Text>
             </View>
-            <Feather name="chevron-right" size={20} color="#9CA3AF" />
+            <Feather name="chevron-right" size={20} color={theme.textMuted} />
           </TouchableOpacity>
 
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
-              <View style={styles.menuIconCircle}>
-                <Ionicons name="notifications-outline" size={20} color="#4B5563" />
+              <View style={[styles.menuIconCircle, { backgroundColor: theme.iconBg }]}>
+                <Ionicons name="notifications-outline" size={20} color={theme.iconColor} />
               </View>
-              <Text style={styles.menuItemText}>Notification Settings</Text>
+              <Text style={[styles.menuItemText, { color: theme.text }]}>Notification Settings</Text>
             </View>
-            <Feather name="chevron-right" size={20} color="#9CA3AF" />
+            <Feather name="chevron-right" size={20} color={theme.textMuted} />
           </TouchableOpacity>
 
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
-              <View style={styles.menuIconCircle}>
-                <Ionicons name="help-circle-outline" size={20} color="#4B5563" />
+              <View style={[styles.menuIconCircle, { backgroundColor: theme.iconBg }]}>
+                <Ionicons name="help-circle-outline" size={20} color={theme.iconColor} />
               </View>
-              <Text style={styles.menuItemText}>Help & Support</Text>
+              <Text style={[styles.menuItemText, { color: theme.text }]}>Help & Support</Text>
             </View>
-            <Feather name="chevron-right" size={20} color="#9CA3AF" />
+            <Feather name="chevron-right" size={20} color={theme.textMuted} />
           </TouchableOpacity>
         </View>
 
@@ -92,7 +114,7 @@ export default function ProfileScreen() {
         </TouchableOpacity>
 
         {/* Footer */}
-        <Text style={styles.versionText}>Version 4.12.0</Text>
+        <Text style={[styles.versionText, { color: theme.textMuted }]}>Version 4.12.0</Text>
 
       </ScrollView>
     </View>
@@ -102,7 +124,6 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8FAFC',
   },
   header: {
     flexDirection: 'row',
@@ -111,12 +132,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 60,
     paddingBottom: 20,
-    backgroundColor: '#F8FAFC',
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#000',
   },
   bellContainer: {
     position: 'relative',
@@ -130,7 +149,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: '#EF4444',
     borderWidth: 1,
-    borderColor: '#F8FAFC',
   },
   scrollContent: {
     paddingHorizontal: 20,
@@ -161,32 +179,26 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
-    borderColor: '#F8FAFC',
   },
   name: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#0F172A',
     marginBottom: 8,
   },
   badgePill: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F1F5F9',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 16,
     gap: 6,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
   },
   badgeText: {
     fontSize: 12,
-    color: '#334155',
     fontWeight: '500',
   },
   menuCard: {
-    backgroundColor: '#FFF',
     borderRadius: 20,
     paddingHorizontal: 16,
     marginBottom: 24,
@@ -211,18 +223,15 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F1F5F9',
     justifyContent: 'center',
     alignItems: 'center',
   },
   menuItemText: {
     fontSize: 15,
     fontWeight: '500',
-    color: '#0F172A',
   },
   divider: {
     height: 1,
-    backgroundColor: '#F1F5F9',
   },
   logoutBtn: {
     flexDirection: 'row',
@@ -241,7 +250,6 @@ const styles = StyleSheet.create({
   },
   versionText: {
     textAlign: 'center',
-    color: '#94A3B8',
     fontSize: 12,
   },
 });

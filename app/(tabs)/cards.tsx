@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function CardsScreen() {
+  const { theme } = useTheme();
   const [onlinePayments, setOnlinePayments] = useState(true);
   const [intlUse, setIntlUse] = useState(false);
   const [contactless, setContactless] = useState(true);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
       {/* Header */}
-      <View style={styles.header}>
-        <Ionicons name="wallet-outline" size={24} color="#000" />
-        <Text style={styles.headerTitle}>SecureVault</Text>
-        <Ionicons name="notifications-outline" size={24} color="#000" />
+      <View style={[styles.header, { backgroundColor: theme.background }]}>
+        <Ionicons name="wallet-outline" size={24} color={theme.headerIcon} />
+        <Text style={[styles.headerTitle, { color: theme.headerIcon }]}>SecureVault</Text>
+        <Ionicons name="notifications-outline" size={24} color={theme.headerIcon} />
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
         {/* Title Section */}
         <View style={styles.titleSection}>
-          <Text style={styles.pageTitle}>My Cards</Text>
-          <Text style={styles.pageSubtitle}>Manage your virtual and physical cards</Text>
+          <Text style={[styles.pageTitle, { color: theme.text }]}>My Cards</Text>
+          <Text style={[styles.pageSubtitle, { color: theme.textMuted }]}>Manage your virtual and physical cards</Text>
         </View>
 
         {/* Card Carousel (Mocked as single card for now) */}
@@ -67,21 +69,21 @@ export default function CardsScreen() {
 
         {/* Action Buttons */}
         <View style={styles.actionsContainer}>
-          <TouchableOpacity style={styles.actionBtn}>
-            <View style={styles.actionIconCircle}>
-              <Ionicons name="eye-outline" size={24} color="#4B5563" />
+          <TouchableOpacity style={[styles.actionBtn, { backgroundColor: theme.card }]}>
+            <View style={[styles.actionIconCircle, { backgroundColor: theme.iconBg }]}>
+              <Ionicons name="eye-outline" size={24} color={theme.iconColor} />
             </View>
-            <Text style={styles.actionText}>Show{"\n"}Details</Text>
+            <Text style={[styles.actionText, { color: theme.text }]}>Show{"\n"}Details</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.actionBtn}>
-            <View style={styles.actionIconCircle}>
-              <MaterialCommunityIcons name="numeric" size={24} color="#4B5563" />
+          <TouchableOpacity style={[styles.actionBtn, { backgroundColor: theme.card }]}>
+            <View style={[styles.actionIconCircle, { backgroundColor: theme.iconBg }]}>
+              <MaterialCommunityIcons name="numeric" size={24} color={theme.iconColor} />
             </View>
-            <Text style={styles.actionText}>Reset{"\n"}PIN</Text>
+            <Text style={[styles.actionText, { color: theme.text }]}>Reset{"\n"}PIN</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.actionBtn}>
+          <TouchableOpacity style={[styles.actionBtn, { backgroundColor: theme.card }]}>
             <View style={[styles.actionIconCircle, { backgroundColor: '#FEE2E2' }]}>
               <Ionicons name="snow-outline" size={24} color="#DC2626" />
             </View>
@@ -90,16 +92,16 @@ export default function CardsScreen() {
         </View>
 
         {/* Card Settings */}
-        <Text style={styles.sectionTitle}>Card Settings</Text>
-        <View style={styles.settingsCard}>
+        <Text style={[styles.sectionTitle, { color: theme.text }]}>Card Settings</Text>
+        <View style={[styles.settingsCard, { backgroundColor: theme.card }]}>
           <View style={styles.settingRow}>
             <View style={styles.settingLeft}>
-              <View style={styles.settingIconCircle}>
-                <Ionicons name="globe-outline" size={20} color="#4B5563" />
+              <View style={[styles.settingIconCircle, { backgroundColor: theme.iconBg }]}>
+                <Ionicons name="globe-outline" size={20} color={theme.iconColor} />
               </View>
               <View>
-                <Text style={styles.settingTitle}>Online Payments</Text>
-                <Text style={styles.settingSubtitle}>Internet transactions</Text>
+                <Text style={[styles.settingTitle, { color: theme.text }]}>Online Payments</Text>
+                <Text style={[styles.settingSubtitle, { color: theme.textMuted }]}>Internet transactions</Text>
               </View>
             </View>
             <Switch
@@ -110,16 +112,16 @@ export default function CardsScreen() {
             />
           </View>
           
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <View style={styles.settingRow}>
             <View style={styles.settingLeft}>
-              <View style={styles.settingIconCircle}>
-                <Ionicons name="airplane-outline" size={20} color="#4B5563" />
+              <View style={[styles.settingIconCircle, { backgroundColor: theme.iconBg }]}>
+                <Ionicons name="airplane-outline" size={20} color={theme.iconColor} />
               </View>
               <View>
-                <Text style={styles.settingTitle}>International Use</Text>
-                <Text style={styles.settingSubtitle}>Transactions abroad</Text>
+                <Text style={[styles.settingTitle, { color: theme.text }]}>International Use</Text>
+                <Text style={[styles.settingSubtitle, { color: theme.textMuted }]}>Transactions abroad</Text>
               </View>
             </View>
             <Switch
@@ -130,16 +132,16 @@ export default function CardsScreen() {
             />
           </View>
 
-          <View style={styles.divider} />
+          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <View style={styles.settingRow}>
             <View style={styles.settingLeft}>
-              <View style={styles.settingIconCircle}>
-                <MaterialCommunityIcons name="contactless-payment" size={20} color="#4B5563" />
+              <View style={[styles.settingIconCircle, { backgroundColor: theme.iconBg }]}>
+                <MaterialCommunityIcons name="contactless-payment" size={20} color={theme.iconColor} />
               </View>
               <View>
-                <Text style={styles.settingTitle}>Contactless</Text>
-                <Text style={styles.settingSubtitle}>Tap to pay in stores</Text>
+                <Text style={[styles.settingTitle, { color: theme.text }]}>Contactless</Text>
+                <Text style={[styles.settingSubtitle, { color: theme.textMuted }]}>Tap to pay in stores</Text>
               </View>
             </View>
             <Switch
@@ -159,7 +161,6 @@ export default function CardsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8FAFC',
   },
   header: {
     flexDirection: 'row',
@@ -168,12 +169,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 60,
     paddingBottom: 20,
-    backgroundColor: '#F8FAFC',
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#000',
   },
   scrollContent: {
     paddingHorizontal: 20,
@@ -185,12 +184,10 @@ const styles = StyleSheet.create({
   pageTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#0F172A',
     marginBottom: 4,
   },
   pageSubtitle: {
     fontSize: 14,
-    color: '#64748B',
   },
   cardContainer: {
     alignItems: 'center',
@@ -289,7 +286,6 @@ const styles = StyleSheet.create({
   },
   actionBtn: {
     flex: 1,
-    backgroundColor: '#FFF',
     borderRadius: 16,
     padding: 16,
     alignItems: 'center',
@@ -304,14 +300,12 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#F1F5F9',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 12,
   },
   actionText: {
     fontSize: 12,
-    color: '#0F172A',
     textAlign: 'center',
     fontWeight: '500',
     lineHeight: 16,
@@ -319,11 +313,9 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#0F172A',
     marginBottom: 16,
   },
   settingsCard: {
-    backgroundColor: '#FFF',
     borderRadius: 20,
     padding: 16,
     shadowColor: '#000',
@@ -347,23 +339,19 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#F1F5F9',
     justifyContent: 'center',
     alignItems: 'center',
   },
   settingTitle: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#0F172A',
     marginBottom: 2,
   },
   settingSubtitle: {
     fontSize: 13,
-    color: '#64748B',
   },
   divider: {
     height: 1,
-    backgroundColor: '#F1F5F9',
     marginVertical: 8,
     marginLeft: 56, // Align with text
   },

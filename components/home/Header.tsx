@@ -1,16 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from '../../context/ThemeContext';
 
 export function Header() {
+  const { theme } = useTheme();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.background, borderBottomColor: theme.divider }]}>
       <View style={styles.left}>
         <Ionicons name="shield-checkmark" size={28} color="#0A50E4" />
-        <Text style={styles.title}>SecureWallet</Text>
+        <Text style={[styles.title, { color: theme.text }]}>SecureWallet</Text>
       </View>
       <View style={styles.right}>
-        <Ionicons name="notifications-outline" size={24} color="#000000" />
+        <Ionicons name="notifications-outline" size={24} color={theme.iconColor} />
         <View style={styles.avatar}>
           <Text style={styles.avatarText}>JS</Text>
         </View>
