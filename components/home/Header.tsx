@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { useTheme } from '../../context/ThemeContext';
 
 export function Header() {
@@ -9,8 +9,8 @@ export function Header() {
   return (
     <View style={[styles.container, { backgroundColor: theme.background, borderBottomColor: theme.divider }]}>
       <View style={styles.left}>
-        <Ionicons name="shield-checkmark" size={28} color="#0A50E4" />
-        <Text style={[styles.title, { color: theme.text }]}>SecureWallet</Text>
+        <Image source={require('../../assets/images/logo.png')} style={{ width: 40, height: 40, resizeMode: 'contain' }} />
+        <Text style={[styles.title, { color: theme.text }]}>Cash App</Text>
       </View>
       <View style={styles.right}>
         <Ionicons name="notifications-outline" size={24} color={theme.iconColor} />
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   left: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: 2,
   },
   title: {
     fontSize: 20,

@@ -1,19 +1,28 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useTheme } from '../../context/ThemeContext';
 
 export function BalanceCard() {
   const { theme, isDarkMode } = useTheme();
+  const [isBalanceVisible, setIsBalanceVisible] = useState(true);
 
   return (
     <View style={[styles.container, { backgroundColor: isDarkMode ? theme.card : '#0F172A', borderColor: theme.divider, borderWidth: isDarkMode ? 1 : 0 }]}>
       <View style={styles.topRow}>
-        <View>
+        <View style={{ flex: 1 }}>
           <Text style={styles.label}>TOTAL BALANCE</Text>
           <View style={styles.balanceRow}>
-            <Text style={styles.balance}>$12,450.00</Text>
-            <Ionicons name="eye-outline" size={20} color="#8F9BB3" />
+            <Text 
+              style={styles.balance} 
+              adjustsFontSizeToFit={true} 
+              numberOfLines={1}
+            >
+              {isBalanceVisible ? '$120,450.00' : '••••••••'}
+            </Text>
+            <TouchableOpacity onPress={() => setIsBalanceVisible(!isBalanceVisible)}>
+              <Ionicons name={isBalanceVisible ? "eye-outline" : "eye-off-outline"} size={20} color="#8F9BB3" />
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.nfcIcon}>
@@ -48,6 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginBottom: 40,
+    gap: 12,
   },
   label: {
     color: '#64748B',
@@ -60,11 +70,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+    flexShrink: 1,
   },
   balance: {
     color: '#FFFFFF',
     fontSize: 36,
     fontWeight: 'bold',
+    flexShrink: 1,
   },
   nfcIcon: {
     width: 44,
