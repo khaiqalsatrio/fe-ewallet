@@ -1,6 +1,6 @@
+import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Switch } from 'react-native';
-import { Ionicons, Feather, MaterialIcons } from '@expo/vector-icons';
+import { Image, ScrollView, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from '../../context/ThemeContext';
 
 export default function ProfileScreen() {
@@ -22,17 +22,16 @@ export default function ProfileScreen() {
         {/* Profile Info */}
         <View style={styles.profileSection}>
           <View style={styles.avatarContainer}>
-            <Image
-              source={{ uri: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80' }}
-              style={styles.avatar}
-            />
+            <View style={[styles.avatar, { justifyContent: 'center', alignItems: 'center', backgroundColor: theme.iconBg }]}>
+              <Ionicons name="person" size={48} color={theme.iconColor} />
+            </View>
             <TouchableOpacity style={[styles.editBtn, { borderColor: theme.background }]}>
               <Ionicons name="pencil" size={12} color="#FFF" />
             </TouchableOpacity>
           </View>
-          
-          <Text style={[styles.name, { color: theme.text }]}>Julianne Thorne</Text>
-          
+
+          <Text style={[styles.name, { color: theme.text }]}>Radit R35</Text>
+
           <View style={[styles.badgePill, { backgroundColor: theme.badgeBg, borderColor: theme.badgeBorder }]}>
             <MaterialIcons name="verified" size={14} color="#3B82F6" />
             <Text style={[styles.badgeText, { color: theme.text }]}>Account Level: Gold</Text>
@@ -41,7 +40,7 @@ export default function ProfileScreen() {
 
         {/* Menu List */}
         <View style={[styles.menuCard, { backgroundColor: theme.card }]}>
-          
+
           {/* Dark Mode Toggle */}
           <View style={styles.menuItem}>
             <View style={styles.menuItemLeft}>
@@ -69,7 +68,7 @@ export default function ProfileScreen() {
             </View>
             <Feather name="chevron-right" size={20} color={theme.textMuted} />
           </TouchableOpacity>
-          
+
           <View style={[styles.divider, { backgroundColor: theme.divider }]} />
 
           <TouchableOpacity style={styles.menuItem}>

@@ -1,6 +1,6 @@
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from '../../context/ThemeContext';
 
 export function BalanceCard() {
@@ -13,12 +13,12 @@ export function BalanceCard() {
         <View style={{ flex: 1 }}>
           <Text style={styles.label}>TOTAL BALANCE</Text>
           <View style={styles.balanceRow}>
-            <Text 
-              style={styles.balance} 
-              adjustsFontSizeToFit={true} 
+            <Text
+              style={styles.balance}
+              adjustsFontSizeToFit={true}
               numberOfLines={1}
             >
-              {isBalanceVisible ? '$120,450.00' : '••••••••'}
+              {isBalanceVisible ? '$5,120,450.000' : '••••••••'}
             </Text>
             <TouchableOpacity onPress={() => setIsBalanceVisible(!isBalanceVisible)}>
               <Ionicons name={isBalanceVisible ? "eye-outline" : "eye-off-outline"} size={20} color="#8F9BB3" />
